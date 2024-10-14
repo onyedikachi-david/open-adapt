@@ -1,3 +1,96 @@
+# name: OpenAdapt Test CI
+
+# on:
+#   pull_request:
+#     branches:
+#       - "**"
+
+# jobs:
+#   run-tests:
+#     runs-on: macos-latest
+#     env:
+#       REPO: ${{ github.event.pull_request.head.repo.full_name }}
+#       BRANCH: ${{ github.event.pull_request.head.ref }}
+#       DISPLAY: :99
+#       PYTEST_ADDOPTS: "--capture=no --verbose"
+#       OPENADAPT_DB_PATH: /tmp/openadapt_test.db
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#         with:
+#           ref: ${{ env.BRANCH }}
+#           repository: ${{ env.REPO }}
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v3
+#         with:
+#           python-version: "3.10"
+
+         
+#       - name: Setup virtual display
+#         run: |
+#           brew install --cask xquartz
+#           defaults write org.x.X11 enable_test_extensions -boolean true
+#           /opt/X11/bin/Xvfb :99 -ac -screen 0 1024x768x8 &
+#           sleep 3  # give xvfb some time to start
+#         env:
+#           DISPLAY: :99
+
+#       - name: Run tests using the shell script (macOS compatible).
+#         run: sh install/install_openadapt.sh
+
+#       - name: Install Poetry
+#         uses: snok/install-poetry@v1
+#         with:
+#           version: 1.5.1
+#           virtualenvs-create: true
+#           virtualenvs-in-project: true
+
+#       - name: Cache dependencies
+#         uses: actions/cache@v2
+#         with:
+#           path: .venv
+#           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-poetry-
+
+#       - name: Install dependencies
+#         run: poetry install --no-interaction --no-root
+
+   
+
+#       # - name: Run migrations
+#       #   run: |
+#       #     poetry run alembic upgrade head
+
+#       - name: Create necessary directories
+#         run: |
+#           mkdir -p /tmp/openadapt/videos
+#           mkdir -p /tmp/openadapt/plots
+
+#       - name: Run tests
+#         run: |
+#           poetry run pytest -vvvv -s tests/openadapt/test_recording.py
+#           # pytest tests/test_record_functionality.py --capture=no --verbose
+
+#       - name: Upload test artifacts
+#         uses: actions/upload-artifact@v4
+#         if: always()
+#         with:
+#           name: test-artifacts
+#           path: |
+#             /tmp/openadapt/videos
+#             /tmp/openadapt/plots
+#             /tmp/openadapt_test.db
+#           retention-days: 7
+
+#       - name: Run other tests and checks
+#         run: |
+#           poetry run black --preview --check . --exclude '/(alembic|\.cache|\.venv|venv|contrib|__pycache__)/'
+#           poetry run flake8 --exclude=alembic,.venv,venv,contrib,.cache,.git
+
+
 name: OpenAdapt Test CI
 
 on:
@@ -14,6 +107,7 @@ jobs:
       DISPLAY: :99
       PYTEST_ADDOPTS: "--capture=no --verbose"
       OPENADAPT_DB_PATH: /tmp/openadapt_test.db
+      CI: true
 
     steps:
       - name: Checkout code
@@ -27,18 +121,18 @@ jobs:
         with:
           python-version: "3.10"
 
-         
       - name: Setup virtual display
         run: |
           brew install --cask xquartz
           defaults write org.x.X11 enable_test_extensions -boolean true
           /opt/X11/bin/Xvfb :99 -ac -screen 0 1024x768x8 &
-          sleep 3  # give xvfb some time to start
-        env:
-          DISPLAY: :99
+          sleep 10  # Increase wait time
+          xdpyinfo -display :99  # Print display info for debugging
 
-      - name: Run tests using the shell script (macOS compatible).
-        run: sh install/install_openadapt.sh
+      - name: Install system dependencies
+        run: |
+          brew install tesseract
+          brew install opencv
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -55,14 +149,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      - name: Install dependencies
+      - name: Install project dependencies
         run: poetry install --no-interaction --no-root
 
-   
-
-      # - name: Run migrations
-      #   run: |
-      #     poetry run alembic upgrade head
+      - name: Run migrations
+        run: poetry run alembic upgrade head
 
       - name: Create necessary directories
         run: |
@@ -72,7 +163,9 @@ jobs:
       - name: Run tests
         run: |
           poetry run pytest -vvvv -s tests/openadapt/test_recording.py
-          # pytest tests/test_record_functionality.py --capture=no --verbose
+        env:
+          DISPLAY: :99
+          OPENADAPT_CI_MODE: "true"
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
@@ -89,4 +182,3 @@ jobs:
         run: |
           poetry run black --preview --check . --exclude '/(alembic|\.cache|\.venv|venv|contrib|__pycache__)/'
           poetry run flake8 --exclude=alembic,.venv,venv,contrib,.cache,.git
-
