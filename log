@@ -1,0 +1,941 @@
+python -m pytest -vvvv -s tests/openadapt/test_recording.py
+=========================================================================================== test session starts ============================================================================================
+platform darwin -- Python 3.10.4, pytest-7.1.3, pluggy-1.4.0 -- /Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt, configfile: pyproject.toml
+plugins: anyio-4.3.0, hydra-core-1.3.2
+collected 1 item
+
+tests/openadapt/test_recording.py::test_record_functionality 2024-09-17 14:58:58.655 | INFO     | test_recording:test_record_functionality:25 - Starting test_record_functionality
+2024-09-17 14:58:58.671 | INFO     | test_recording:test_record_functionality:48 - Recording process started
+2024-09-17 14:58:59.673 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:00.465 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: record(Test recording, <multiprocessing.synchronize.Event object at 0x100667310>, <multiprocessing.synchronize.Event object at 0x14dea3670>, <multiprocessing.connection.Connection object at 0x14dea3940>, False)
+2024-09-17 14:59:00.469 | INFO     | openadapt.db.crud:acquire_db_lock:947 - Database lock acquired.
+2024-09-17 14:59:00.470 | INFO     | openadapt.record:record:1311 - task_description='Test recording'
+2024-09-17 14:59:00.470 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: create_recording(Test recording)
+2024-09-17 14:59:00.519 | INFO     | openadapt.record:create_recording:922 - recording=Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording')
+2024-09-17 14:59:00.519 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: create_recording(Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'))
+2024-09-17 14:59:00.529 | INFO     | openadapt.record:read_screen_events:723 - Starting
+2024-09-17 14:59:00.529 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: read_window_events(<queue.Queue object at 0x14df2cdf0>, <multiprocessing.synchronize.Event object at 0x100667310>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <Synchronized wrapper for c_int(0)>)
+2024-09-17 14:59:00.531 | INFO     | openadapt.record:read_window_events:755 - Starting
+2024-09-17 14:59:00.532 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: process_events(<queue.Queue object at 0x14df2cdf0>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14df62b60>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14dfce260>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14dfcd480>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14dfcdba0>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14dfce5c0>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x14dfcded0>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x100667310>, <Synchronized wrapper for c_int(2)>, <Synchronized wrapper for c_int(0)>, <Synchronized wrapper for c_int(0)>, <Synchronized wrapper for c_int(0)>, <Synchronized wrapper for c_int(0)>, <Synchronized wrapper for c_int(0)>)
+2024-09-17 14:59:00.534 | INFO     | openadapt.record:process_events:168 - Starting
+2024-09-17 14:59:00.601 | INFO     | openadapt.record:record:1527 - expected_starts=12
+2024-09-17 14:59:00.644 | INFO     | openadapt.record:read_window_events:780 - _window_data={'title': 'Brave Browser', 'left': 0, 'top': -44, 'width': 1680, 'height': 44, 'window_id': 387}
+2024-09-17 14:59:00.647 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.648 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.649 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.649 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.661 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.662 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.666 | WARNING  | openadapt.record:process_events:222 - Discarding action that came before screen
+2024-09-17 14:59:00.674 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:01.675 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:02.686 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:03.715 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:04.741 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:05.756 | DEBUG    | test_recording:test_record_functionality:60 - No message received, continuing to wait...
+2024-09-17 14:59:06.175 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: performance_stats_writer(<openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x104d118d0>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x17cdcdcc0>, <Synchronized wrapper for c_int(5)>)
+2024-09-17 14:59:06.177 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.475436166
+2024-09-17 14:59:06.177 | INFO     | openadapt.record:performance_stats_writer:812 - Performance stats writer starting
+2024-09-17 14:59:06.220 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: write_events(window, <function write_window_event at 0x17b2b3490>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x1032418d0>, <Synchronized wrapper for c_int(1)>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x17b2cdc90>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x17b2cd090>, <Synchronized wrapper for c_int(6)>)
+2024-09-17 14:59:06.222 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.520681083
+2024-09-17 14:59:06.222 | INFO     | openadapt.record:write_events:395 - event_type='window' starting
+2024-09-17 14:59:06.229 | DEBUG    | openadapt.record:write_events:441 - event_type='window' written
+2024-09-17 14:59:06.320 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: write_events(screen, <function write_screen_event at 0x17b137400>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x10315d8d0>, <Synchronized wrapper for c_int(49)>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x17b151d50>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x17b151150>, <Synchronized wrapper for c_int(7)>)
+2024-09-17 14:59:06.322 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.620715125
+2024-09-17 14:59:06.323 | INFO     | openadapt.record:write_events:395 - event_type='screen' starting
+2024-09-17 14:59:06.325 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: write_events(screen/video, <function write_video_event at 0x17cf737f0>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x1051758d0>, <Synchronized wrapper for c_int(49)>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x17cf8dd20>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x17cf8d120>, <Synchronized wrapper for c_int(8)>, <function video_pre_callback at 0x17cf735b0>, <function video_post_callback at 0x17cf73760>)
+2024-09-17 14:59:06.327 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.624969791
+2024-09-17 14:59:06.327 | INFO     | openadapt.record:write_events:395 - event_type='screen/video' starting
+2024-09-17 14:59:06.432 | INFO     | openadapt.utils:wrapper_logging:710 -  -> Enter: write_events(action, <function write_action_event at 0x17c5b7250>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x10460d8d0>, <Synchronized wrapper for c_int(289)>, <openadapt.extensions.synchronized_queue.SynchronizedQueue object at 0x17c5cdd20>, Recording(id=29, timestamp=1726581540.470996, monitor_width=1680, monitor_height=1050, double_click_interval_seconds=0.5, double_click_distance_pixels=5.0, platform='darwin', task_description='Test recording'), <multiprocessing.synchronize.Event object at 0x17c5cd120>, <Synchronized wrapper for c_int(8)>)
+2024-09-17 14:59:06.434 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.73188925
+2024-09-17 14:59:06.434 | INFO     | openadapt.record:memory_writer:856 - Memory writer starting
+2024-09-17 14:59:06.434 | DEBUG    | openadapt.utils:set_start_time:375 - _start_time=1726581540.470996 _start_perf_counter=6240.732444166
+2024-09-17 14:59:06.434 | INFO     | openadapt.record:write_events:395 - event_type='action' starting
+2024-09-17 14:59:06.446 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.457 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.462 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:06.464 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.465 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.469 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.478 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.481 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.483 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.482 | INFO     | openadapt.record:record_audio:1106 - Audio recording started.
+2024-09-17 14:59:06.488 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.492 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.494 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.500 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.507 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.512 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.513 | INFO     | openadapt.video:initialize_video_writer:76 - initializing video stream...
+2024-09-17 14:59:06.526 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.530 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.534 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.540 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.544 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.546 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.549 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.560 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.590 | INFO     | openadapt.db.crud:update_video_start_time:721 - Updated video start time for recording 1726581540.470996 to 1726581540.670897.
+2024-09-17 14:59:06.599 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.603 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:06.610 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.615 | INFO     | test_recording:test_record_functionality:55 - Received message: {'type': 'record.started'}
+2024-09-17 14:59:06.616 | INFO     | test_recording:test_record_functionality:57 - Received 'record.started' signal
+2024-09-17 14:59:06.611 | INFO     | openadapt.record:record:1533 - ****************************************
+2024-09-17 14:59:06.623 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.612 | INFO     | openadapt.record:record:1533 - ****************************************
+2024-09-17 14:59:06.613 | INFO     | openadapt.record:record:1533 - ****************************************
+2024-09-17 14:59:06.613 | INFO     | openadapt.record:record:1533 - ****************************************
+2024-09-17 14:59:06.613 | INFO     | openadapt.record:record:1533 - ****************************************
+2024-09-17 14:59:06.613 | INFO     | openadapt.record:record:1534 - All readers and writers have started. Waiting for input events...
+2024-09-17 14:59:06.628 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.634 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.639 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.651 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.658 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.662 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.664 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.676 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.678 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.687 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.703 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.713 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.716 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.719 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.720 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.724 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.728 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.731 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.735 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.739 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581540.6113858 video_start_timestamp=1726581540.670897 time_diff=-0.05951118469238281 pts=-1 force_key_frame=True
+2024-09-17 14:59:06.740 | DEBUG    | openadapt.video:write_video_frame:146 - incremented pts=1
+2024-09-17 14:59:06.740 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.745 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.754 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.761 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.765 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.769 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.775 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.780 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:06.782 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.785 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.791 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.812 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.814 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.825 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.828 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.836 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.839 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.849 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581540.6113858 video_start_timestamp=1726581540.670897 time_diff=-0.05951118469238281 pts=-1 force_key_frame=True
+2024-09-17 14:59:06.849 | DEBUG    | openadapt.video:write_video_frame:146 - incremented pts=2
+2024-09-17 14:59:06.853 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.857 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.859 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.860 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.862 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.865 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.867 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.878 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.886 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.892 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.899 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:06.965 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.973 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:06.980 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.986 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.987 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.989 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:06.995 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.000 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.013 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.014 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.016 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.022 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.025 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.029 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.031 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.034 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.036 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.041 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.046 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.063 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.065 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.068 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.071 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.075 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.079 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.083 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.087 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581540.799253 video_start_timestamp=1726581540.670897 time_diff=0.1283559799194336 pts=3 force_key_frame=False
+2024-09-17 14:59:07.090 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.093 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.098 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.143 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.146 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.167 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.177 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.180 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.183 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.190 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.203 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.209 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.212 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.216 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.217 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.224 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.251 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.252 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.254 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.257 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.258 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:07.259 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.260 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.263 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.266 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.268 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.270 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.283 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.286 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.291 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.292 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.294 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.295 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.296 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.298 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.299 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.301 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.316 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.320 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.328 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.334 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.344 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581540.8471234 video_start_timestamp=1726581540.670897 time_diff=0.17622637748718262 pts=4 force_key_frame=False
+2024-09-17 14:59:07.346 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.359 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.362 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.365 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.369 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.372 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.375 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.380 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.390 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.393 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.394 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.396 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.402 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.422 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.429 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.433 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.435 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:07.435 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.438 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.463 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.465 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.468 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.473 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.479 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.481 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.482 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.486 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.500 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.503 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.523 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581540.8957818 video_start_timestamp=1726581540.670897 time_diff=0.2248847484588623 pts=5 force_key_frame=False
+2024-09-17 14:59:07.534 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.537 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.549 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.551 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.574 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.578 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.581 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.583 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.589 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.611 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.617 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:07.625 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.628 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.645 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.648 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.650 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.653 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.661 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.665 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.671 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.677 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.679 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.680 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.682 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.683 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.684 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.686 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.689 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.691 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.692 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.694 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.699 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.703 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.712 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.719 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.747 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.773 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581541.2416239 video_start_timestamp=1726581540.670897 time_diff=0.5707268714904785 pts=13 force_key_frame=False
+2024-09-17 14:59:07.789 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.794 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.799 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.801 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.803 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.804 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.806 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.812 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.818 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.823 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.827 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.832 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.834 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.842 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.846 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.852 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.853 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.858 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.867 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.871 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.873 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:07.876 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.878 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.880 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.883 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.886 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.888 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.889 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.890 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.897 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.901 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.904 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.908 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.910 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.913 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.915 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.919 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.922 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.928 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.932 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.936 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.937 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.939 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.948 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:07.961 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.966 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:07.988 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581541.4422665 video_start_timestamp=1726581540.670897 time_diff=0.771369457244873 pts=18 force_key_frame=False
+2024-09-17 14:59:08.004 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.006 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.008 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.014 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.016 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.023 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.057 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.067 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.073 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.082 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.084 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.089 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.093 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.094 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:08.095 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.097 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.098 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.099 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.103 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.107 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.112 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.119 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.121 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.127 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.131 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.132 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.135 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.136 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.150 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.155 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.159 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.166 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.167 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.168 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.169 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.170 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.173 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.175 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.191 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.197 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.201 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581541.5462897 video_start_timestamp=1726581540.670897 time_diff=0.8753926753997803 pts=21 force_key_frame=False
+2024-09-17 14:59:08.256 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.292 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.297 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:08.319 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.326 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.328 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.332 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.344 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.347 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.362 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.363 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.375 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.381 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.387 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.392 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581541.6356733 video_start_timestamp=1726581540.670897 time_diff=0.9647762775421143 pts=23 force_key_frame=False
+2024-09-17 14:59:08.396 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.400 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.402 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.412 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.415 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.423 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.428 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.434 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.452 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.457 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.468 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.474 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.481 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:08.481 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.489 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.494 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.500 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.507 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.512 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.515 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.517 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.520 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.525 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.531 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.534 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.542 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.546 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.550 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.553 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.561 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.564 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.573 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.576 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.578 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.580 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.587 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.590 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.595 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.0298934 video_start_timestamp=1726581540.670897 time_diff=1.3589963912963867 pts=32 force_key_frame=False
+2024-09-17 14:59:08.598 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.603 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.601 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.610 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.616 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.621 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.622 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.634 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.647 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.663 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.665 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.686 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.701 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.713 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:08.718 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.724 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.730 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.736 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.743 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.748 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.756 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.764 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.773 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.782 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.785 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.797 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.798 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.804 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.807 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.811 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.815 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.818 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.822 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.824 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.835 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.843 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.0727887 video_start_timestamp=1726581540.670897 time_diff=1.4018917083740234 pts=33 force_key_frame=False
+2024-09-17 14:59:08.847 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.848 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.850 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.851 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.875 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.890 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.894 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.898 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:08.902 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.905 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.910 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.914 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.925 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.945 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.960 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.974 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.979 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.983 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.988 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:08.992 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:09.001 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.005 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.010 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.013 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.019 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.023 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.024 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.026 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.029 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.034 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.041 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.067 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.082 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.085 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.093 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.102 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.106 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.1352596 video_start_timestamp=1726581540.670897 time_diff=1.464362621307373 pts=35 force_key_frame=False
+2024-09-17 14:59:09.116 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.122 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.124 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.128 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.130 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.131 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.144 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.148 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.158 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.160 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.166 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.169 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.174 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.208 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.217 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.225 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.229 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:09.234 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.254 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.261 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.264 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.266 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.271 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.277 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.280 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.293 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.297 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.304 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.301 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.315 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.318 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.321 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.323 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.330 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.331 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.332 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.337 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.339 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.210736 video_start_timestamp=1726581540.670897 time_diff=1.5398390293121338 pts=36 force_key_frame=False
+2024-09-17 14:59:09.346 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.350 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.351 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.354 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.357 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.372 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.376 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.380 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.385 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.404 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.415 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.419 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.468 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.476 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.485 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.493 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.498 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.499 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:09.505 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.507 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.515 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.524 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.599 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.2596905 video_start_timestamp=1726581540.670897 time_diff=1.5887935161590576 pts=38 force_key_frame=False
+2024-09-17 14:59:09.628 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.646 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.662 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.677 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.680 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.690 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.716 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.732 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.749 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.770 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.786 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.798 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.805 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.816 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:09.820 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.827 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:09.857 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:09.924 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.3031917 video_start_timestamp=1726581540.670897 time_diff=1.6322946548461914 pts=39 force_key_frame=False
+2024-09-17 14:59:09.965 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:10.102 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:10.132 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.160 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:10.174 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.184 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.187 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.227 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.335538 video_start_timestamp=1726581540.670897 time_diff=1.6646409034729004 pts=39 force_key_frame=False
+2024-09-17 14:59:10.228 | DEBUG    | openadapt.video:write_video_frame:146 - incremented pts=40
+2024-09-17 14:59:10.231 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.233 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.265 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.275 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:10.278 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.314 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.332 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.345 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.377 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.398 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.400 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.409 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.413 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:10.433 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.449 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.468 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.478 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.513 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:10.536 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.541 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.556 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.5284936 video_start_timestamp=1726581540.670897 time_diff=1.8575966358184814 pts=44 force_key_frame=False
+2024-09-17 14:59:10.578 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.596 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.599 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.624 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.637 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.702 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.708 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.709 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.718 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.746 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.787 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.791 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.803 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.807 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.809 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.839 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:10.848 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:10.858 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.866 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.868 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.869 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.873 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.874 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.889 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.901 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.927 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.948 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:10.996 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.5880451 video_start_timestamp=1726581540.670897 time_diff=1.9171481132507324 pts=46 force_key_frame=False
+2024-09-17 14:59:11.000 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:11.001 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:11.007 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:11.061 | DEBUG    | openadapt.record:write_events:441 - event_type='action' written
+2024-09-17 14:59:11.095 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:11.293 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:11.341 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:11.453 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.6541252 video_start_timestamp=1726581540.670897 time_diff=1.9832282066345215 pts=47 force_key_frame=False
+2024-09-17 14:59:11.489 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:11.621 | INFO     | test_recording:test_record_functionality:68 - Stopping the recording
+2024-09-17 14:59:11.651 | INFO     | test_recording:test_record_functionality:72 - Waiting for recording to stop
+2024-09-17 14:59:11.656 | INFO     | openadapt.record:write_events:449 - event_type='action' done
+2024-09-17 14:59:11.659 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: write_events(None)
+2024-09-17 14:59:11.654 | INFO     | openadapt.record:write_events:449 - event_type='window' done
+2024-09-17 14:59:11.660 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: write_events(None)
+2024-09-17 14:59:11.660 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: read_window_events(None)
+2024-09-17 14:59:11.666 | INFO     | openadapt.record:process_events:277 - Done
+2024-09-17 14:59:11.668 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: process_events(None)
+2024-09-17 14:59:11.668 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='window_event_reader'...
+2024-09-17 14:59:11.668 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='screen_event_reader'...
+2024-09-17 14:59:11.680 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen/video events...:   0%|                                                                                                                                            | 0/100 [00:00<?, ?event/s]2024-09-17 14:59:11.687 | INFO     | openadapt.record:read_screen_events:735 - Done
+2024-09-17 14:59:11.689 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='keyboard_event_reader'...
+2024-09-17 14:59:11.689 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='mouse_event_reader'...
+2024-09-17 14:59:11.689 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='event_processor'...
+2024-09-17 14:59:11.689 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='screen_event_writer'...
+2024-09-17 14:59:11.785 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:   0%|                                                                                                                                                  | 0/100 [00:00<?, ?event/s]2024-09-17 14:59:11.797 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.7078965 video_start_timestamp=1726581540.670897 time_diff=2.036999464035034 pts=48 force_key_frame=False
+2024-09-17 14:59:11.799 | INFO     | openadapt.record:record_audio:1125 - Transcribing audio...
+Writing screen/video events...:  19%|████████████████████████▉                                                                                                          | 19/100 [00:00<00:02, 39.54event/s]2024-09-17 14:59:12.169 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  35%|███████████████████████████████████████████████▉                                                                                         | 35/100 [00:00<00:00, 77.02event/s]2024-09-17 14:59:12.254 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:12.364 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.764887 video_start_timestamp=1726581540.670897 time_diff=2.0939900875091553 pts=50 force_key_frame=False
+2024-09-17 14:59:12.447 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:12.864 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:12.918 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.058 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.814834 video_start_timestamp=1726581540.670897 time_diff=2.143937110900879 pts=51 force_key_frame=False
+2024-09-17 14:59:13.099 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.352 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.409 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:13.473 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.505 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.8799706 video_start_timestamp=1726581540.670897 time_diff=2.209073543548584 pts=53 force_key_frame=False
+2024-09-17 14:59:13.554 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.672 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:13.755 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:13.790 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.920337 video_start_timestamp=1726581540.670897 time_diff=2.2494399547576904 pts=53 force_key_frame=False
+2024-09-17 14:59:13.791 | DEBUG    | openadapt.video:write_video_frame:146 - incremented pts=54
+Writing screen/video events...:  23%|██████████████████████████████▏                                                                                                    | 23/100 [00:02<00:09,  7.74event/s]2024-09-17 14:59:14.067 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  43%|██████████████████████████████████████████████████████████▉                                                                              | 43/100 [00:02<00:03, 15.17event/s]2024-09-17 14:59:14.076 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.162 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.166 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581542.995775 video_start_timestamp=1726581540.670897 time_diff=2.324877977371216 pts=55 force_key_frame=False
+2024-09-17 14:59:14.281 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:14.317 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.390 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.0691955 video_start_timestamp=1726581540.670897 time_diff=2.398298501968384 pts=57 force_key_frame=False
+2024-09-17 14:59:14.420 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  25%|████████████████████████████████▊                                                                                                  | 25/100 [00:02<00:10,  6.97event/s]2024-09-17 14:59:14.525 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  47%|████████████████████████████████████████████████████████████████▍                                                                        | 47/100 [00:02<00:03, 13.39event/s]2024-09-17 14:59:14.573 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.614 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.2922742 video_start_timestamp=1726581540.670897 time_diff=2.6213772296905518 pts=62 force_key_frame=False
+2024-09-17 14:59:14.670 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.808 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:14.899 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:14.949 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.548755 video_start_timestamp=1726581540.670897 time_diff=2.8778579235076904 pts=69 force_key_frame=False
+Writing screen events...:  50%|████████████████████████████████████████████████████████████████████▌                                                                    | 50/100 [00:03<00:04, 12.03event/s]2024-09-17 14:59:14.981 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  27%|███████████████████████████████████▎                                                                                               | 27/100 [00:03<00:12,  5.95event/s]2024-09-17 14:59:15.104 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:15.136 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:15.203 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.6211467 video_start_timestamp=1726581540.670897 time_diff=2.950249671936035 pts=70 force_key_frame=False
+Writing screen events...:  52%|███████████████████████████████████████████████████████████████████████▏                                                                 | 52/100 [00:03<00:04, 11.38event/s]2024-09-17 14:59:15.229 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  28%|████████████████████████████████████▋                                                                                              | 28/100 [00:03<00:12,  5.72event/s]2024-09-17 14:59:15.334 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:15.365 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  54%|█████████████████████████████████████████████████████████████████████████▉                                                               | 54/100 [00:03<00:04, 11.15event/s]2024-09-17 14:59:15.431 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:15.462 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.7893229 video_start_timestamp=1726581540.670897 time_diff=3.1184258460998535 pts=74 force_key_frame=False
+2024-09-17 14:59:15.502 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  29%|█████████████████████████████████████▉                                                                                             | 29/100 [00:03<00:13,  5.34event/s]2024-09-17 14:59:15.605 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  56%|████████████████████████████████████████████████████████████████████████████▋                                                            | 56/100 [00:03<00:04, 10.70event/s]2024-09-17 14:59:15.654 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:15.702 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.9024847 video_start_timestamp=1726581540.670897 time_diff=3.2315876483917236 pts=77 force_key_frame=False
+2024-09-17 14:59:15.739 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  30%|███████████████████████████████████████▎                                                                                           | 30/100 [00:04<00:13,  5.14event/s]2024-09-17 14:59:15.836 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  58%|███████████████████████████████████████████████████████████████████████████████▍                                                         | 58/100 [00:04<00:04, 10.41event/s]2024-09-17 14:59:15.868 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:15.926 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581543.9670367 video_start_timestamp=1726581540.670897 time_diff=3.296139717102051 pts=79 force_key_frame=False
+2024-09-17 14:59:15.940 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  31%|████████████████████████████████████████▌                                                                                          | 31/100 [00:04<00:13,  5.15event/s]2024-09-17 14:59:16.028 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  60%|██████████████████████████████████████████████████████████████████████████████████▏                                                      | 60/100 [00:04<00:03, 10.41event/s]2024-09-17 14:59:16.060 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:16.146 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581544.5114756 video_start_timestamp=1726581540.670897 time_diff=3.840578556060791 pts=92 force_key_frame=False
+2024-09-17 14:59:16.165 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  32%|█████████████████████████████████████████▉                                                                                         | 32/100 [00:04<00:13,  4.88event/s]2024-09-17 14:59:16.274 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  62%|████████████████████████████████████████████████████████████████████████████████████▉                                                    | 62/100 [00:04<00:04,  9.45event/s]2024-09-17 14:59:16.334 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:16.383 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581544.6308703 video_start_timestamp=1726581540.670897 time_diff=3.9599733352661133 pts=95 force_key_frame=False
+2024-09-17 14:59:16.427 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  33%|███████████████████████████████████████████▏                                                                                       | 33/100 [00:04<00:14,  4.76event/s]2024-09-17 14:59:16.502 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  64%|███████████████████████████████████████████████████████████████████████████████████████▋                                                 | 64/100 [00:04<00:03,  9.18event/s]2024-09-17 14:59:16.570 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:16.603 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.1742854 video_start_timestamp=1726581540.670897 time_diff=4.503388404846191 pts=108 force_key_frame=False
+Writing screen/video events...:  34%|████████████████████████████████████████████▌                                                                                      | 34/100 [00:04<00:13,  4.91event/s]2024-09-17 14:59:16.685 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  65%|█████████████████████████████████████████████████████████████████████████████████████████                                                | 65/100 [00:04<00:03,  9.01event/s]2024-09-17 14:59:16.692 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  66%|██████████████████████████████████████████████████████████████████████████████████████████▍                                              | 66/100 [00:05<00:03,  8.87event/s]2024-09-17 14:59:16.813 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:16.823 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.230641 video_start_timestamp=1726581540.670897 time_diff=4.559743881225586 pts=109 force_key_frame=False
+2024-09-17 14:59:16.892 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  35%|█████████████████████████████████████████████▊                                                                                     | 35/100 [00:05<00:13,  4.66event/s]2024-09-17 14:59:16.932 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  68%|█████████████████████████████████████████████████████████████████████████████████████████████▏                                           | 68/100 [00:05<00:03,  9.42event/s]2024-09-17 14:59:17.000 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:17.012 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.2792213 video_start_timestamp=1726581540.670897 time_diff=4.608324289321899 pts=110 force_key_frame=False
+2024-09-17 14:59:17.078 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  36%|███████████████████████████████████████████████▏                                                                                   | 36/100 [00:05<00:12,  5.01event/s]2024-09-17 14:59:17.091 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:17.165 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.3201473 video_start_timestamp=1726581540.670897 time_diff=4.649250268936157 pts=111 force_key_frame=False
+Writing screen events...:  70%|███████████████████████████████████████████████████████████████████████████████████████████████▉                                         | 70/100 [00:05<00:02, 10.16event/s]2024-09-17 14:59:17.165 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  37%|████████████████████████████████████████████████▍                                                                                  | 37/100 [00:05<00:11,  5.45event/s]2024-09-17 14:59:17.233 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:17.265 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:17.317 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.35614 video_start_timestamp=1726581540.670897 time_diff=4.6852428913116455 pts=112 force_key_frame=False
+Writing screen events...:  72%|██████████████████████████████████████████████████████████████████████████████████████████████████▋                                      | 72/100 [00:05<00:02, 10.68event/s]2024-09-17 14:59:17.332 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  38%|█████████████████████████████████████████████████▊                                                                                 | 38/100 [00:05<00:12,  5.09event/s]2024-09-17 14:59:17.460 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:17.464 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:17.546 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.4021678 video_start_timestamp=1726581540.670897 time_diff=4.731270790100098 pts=113 force_key_frame=False
+Writing screen events...:  74%|█████████████████████████████████████████████████████████████████████████████████████████████████████▍                                   | 74/100 [00:05<00:02, 10.20event/s]2024-09-17 14:59:17.547 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:17.736 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  39%|███████████████████████████████████████████████████                                                                                | 39/100 [00:06<00:14,  4.26event/s]2024-09-17 14:59:17.790 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  76%|████████████████████████████████████████████████████████████████████████████████████████████████████████                                 | 76/100 [00:06<00:02,  9.01event/s]2024-09-17 14:59:17.827 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:17.912 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.4439428 video_start_timestamp=1726581540.670897 time_diff=4.773045778274536 pts=114 force_key_frame=False
+Writing screen events...:  77%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍                               | 77/100 [00:06<00:02,  9.04event/s]2024-09-17 14:59:17.936 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  78%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▊                              | 78/100 [00:06<00:02,  8.03event/s]2024-09-17 14:59:18.115 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  40%|████████████████████████████████████████████████████▍                                                                              | 40/100 [00:06<00:15,  3.76event/s]2024-09-17 14:59:18.131 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:18.182 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:18.220 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.544826 video_start_timestamp=1726581540.670897 time_diff=4.873929023742676 pts=116 force_key_frame=False
+Writing screen events...:  80%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                           | 80/100 [00:06<00:02,  9.14event/s]2024-09-17 14:59:18.283 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  81%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                          | 81/100 [00:06<00:02,  9.03event/s]2024-09-17 14:59:18.397 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  41%|█████████████████████████████████████████████████████▋                                                                             | 41/100 [00:06<00:17,  3.46event/s]2024-09-17 14:59:18.476 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:18.490 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:18.548 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.613645 video_start_timestamp=1726581540.670897 time_diff=4.942748069763184 pts=118 force_key_frame=False
+Writing screen events...:  83%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                       | 83/100 [00:06<00:01,  9.67event/s]2024-09-17 14:59:18.580 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  84%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████                      | 84/100 [00:06<00:01,  8.64event/s]2024-09-17 14:59:18.741 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:18.836 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  42%|███████████████████████████████████████████████████████                                                                            | 42/100 [00:07<00:18,  3.18event/s]2024-09-17 14:59:18.851 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  86%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                   | 86/100 [00:07<00:01,  9.39event/s]2024-09-17 14:59:18.924 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:18.948 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.7502928 video_start_timestamp=1726581540.670897 time_diff=5.079395771026611 pts=121 force_key_frame=False
+Writing screen events...:  87%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                 | 87/100 [00:07<00:01,  7.51event/s]2024-09-17 14:59:19.156 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  43%|████████████████████████████████████████████████████████▎                                                                          | 43/100 [00:07<00:19,  2.97event/s]2024-09-17 14:59:19.241 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  88%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                | 88/100 [00:07<00:01,  7.73event/s]2024-09-17 14:59:19.273 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:19.346 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.826714 video_start_timestamp=1726581540.670897 time_diff=5.155817031860352 pts=123 force_key_frame=False
+2024-09-17 14:59:19.368 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  90%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎             | 90/100 [00:07<00:01,  7.23event/s]2024-09-17 14:59:19.578 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  44%|█████████████████████████████████████████████████████████▋                                                                         | 44/100 [00:07<00:20,  2.72event/s]2024-09-17 14:59:19.683 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...:  91%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋            | 91/100 [00:07<00:01,  7.31event/s]2024-09-17 14:59:19.708 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:19.796 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:19.815 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.914174 video_start_timestamp=1726581540.670897 time_diff=5.243277072906494 pts=125 force_key_frame=False
+Writing screen events...:  93%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 93/100 [00:08<00:00,  7.73event/s]2024-09-17 14:59:19.943 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  94%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊        | 94/100 [00:08<00:00,  8.10event/s]2024-09-17 14:59:20.045 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  95%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏      | 95/100 [00:08<00:00,  7.77event/s]2024-09-17 14:59:20.191 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  45%|██████████████████████████████████████████████████████████▉                                                                        | 45/100 [00:08<00:23,  2.35event/s]2024-09-17 14:59:20.243 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:20.263 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+2024-09-17 14:59:20.342 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581545.9978786 video_start_timestamp=1726581540.670897 time_diff=5.326981544494629 pts=127 force_key_frame=False
+Writing screen events...:  97%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉    | 97/100 [00:08<00:00,  9.22event/s]2024-09-17 14:59:20.348 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  98%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎  | 98/100 [00:08<00:00,  8.89event/s]2024-09-17 14:59:20.474 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...:  99%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋ | 99/100 [00:08<00:00,  6.39event/s]2024-09-17 14:59:20.769 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen/video events...:  46%|████████████████████████████████████████████████████████████▎                                                                      | 46/100 [00:09<00:25,  2.10event/s]2024-09-17 14:59:20.836 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+Writing screen events...: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:09<00:00,  6.84event/s]2024-09-17 14:59:20.885 | DEBUG    | openadapt.record:write_events:441 - event_type='screen' written
+Writing screen events...: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:09<00:00, 11.00event/s]
+2024-09-17 14:59:20.886 | INFO     | openadapt.record:write_events:449 - event_type='screen' done
+2024-09-17 14:59:20.890 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: write_events(None)
+2024-09-17 14:59:20.955 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.0842056 video_start_timestamp=1726581540.670897 time_diff=5.413308620452881 pts=129 force_key_frame=False
+Writing screen/video events...:  47%|█████████████████████████████████████████████████████████████▌                                                                     | 47/100 [00:09<00:26,  1.98event/s]2024-09-17 14:59:21.407 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:21.512 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.1480923 video_start_timestamp=1726581540.670897 time_diff=5.4771952629089355 pts=131 force_key_frame=False
+Writing screen/video events...:  48%|██████████████████████████████████████████████████████████████▉                                                                    | 48/100 [00:10<00:25,  2.02event/s]2024-09-17 14:59:21.879 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:21.973 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.2056031 video_start_timestamp=1726581540.670897 time_diff=5.534706115722656 pts=132 force_key_frame=False
+2024-09-17 14:59:22.347 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='action_event_writer'...
+2024-09-17 14:59:22.363 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='window_event_writer'...
+2024-09-17 14:59:22.363 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='video_writer'...
+Writing screen/video events...:  49%|████████████████████████████████████████████████████████████████▏                                                                  | 49/100 [00:10<00:27,  1.86event/s]2024-09-17 14:59:22.522 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:22.601 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.255162 video_start_timestamp=1726581540.670897 time_diff=5.5842649936676025 pts=134 force_key_frame=False
+Writing screen/video events...:  50%|█████████████████████████████████████████████████████████████████▌                                                                 | 50/100 [00:11<00:23,  2.14event/s]2024-09-17 14:59:22.819 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:22.898 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.3219087 video_start_timestamp=1726581540.670897 time_diff=5.65101170539856 pts=135 force_key_frame=False
+Writing screen/video events...:  51%|██████████████████████████████████████████████████████████████████▊                                                                | 51/100 [00:11<00:21,  2.26event/s]2024-09-17 14:59:23.206 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:23.264 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.4304264 video_start_timestamp=1726581540.670897 time_diff=5.75952935218811 pts=138 force_key_frame=False
+Writing screen/video events...:  52%|████████████████████████████████████████████████████████████████████                                                               | 52/100 [00:11<00:20,  2.37event/s]2024-09-17 14:59:23.578 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:23.655 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.5012143 video_start_timestamp=1726581540.670897 time_diff=5.830317258834839 pts=139 force_key_frame=False
+Writing screen/video events...:  53%|█████████████████████████████████████████████████████████████████████▍                                                             | 53/100 [00:12<00:21,  2.17event/s]2024-09-17 14:59:24.132 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:24.205 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.5764618 video_start_timestamp=1726581540.670897 time_diff=5.905564785003662 pts=141 force_key_frame=False
+Writing screen/video events...:  54%|██████████████████████████████████████████████████████████████████████▋                                                            | 54/100 [00:13<00:22,  2.04event/s]2024-09-17 14:59:24.688 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:24.757 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.666303 video_start_timestamp=1726581540.670897 time_diff=5.995405912399292 pts=143 force_key_frame=False
+Writing screen/video events...:  55%|████████████████████████████████████████████████████████████████████████                                                           | 55/100 [00:13<00:20,  2.19event/s]2024-09-17 14:59:25.065 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:25.145 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.7484307 video_start_timestamp=1726581540.670897 time_diff=6.077533721923828 pts=145 force_key_frame=False
+Writing screen/video events...:  56%|█████████████████████████████████████████████████████████████████████████▎                                                         | 56/100 [00:14<00:22,  1.93event/s]2024-09-17 14:59:25.725 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:25.781 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.7957203 video_start_timestamp=1726581540.670897 time_diff=6.124823331832886 pts=146 force_key_frame=False
+Writing screen/video events...:  57%|██████████████████████████████████████████████████████████████████████████▋                                                        | 57/100 [00:14<00:23,  1.81event/s]2024-09-17 14:59:26.358 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:26.426 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.8726978 video_start_timestamp=1726581540.670897 time_diff=6.20180082321167 pts=148 force_key_frame=False
+Writing screen/video events...:  58%|███████████████████████████████████████████████████████████████████████████▉                                                       | 58/100 [00:15<00:21,  1.94event/s]2024-09-17 14:59:26.792 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:26.853 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581546.9196157 video_start_timestamp=1726581540.670897 time_diff=6.248718738555908 pts=149 force_key_frame=False
+Writing screen/video events...:  59%|█████████████████████████████████████████████████████████████████████████████▎                                                     | 59/100 [00:15<00:19,  2.08event/s]2024-09-17 14:59:27.191 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:27.245 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.0055156 video_start_timestamp=1726581540.670897 time_diff=6.33461856842041 pts=152 force_key_frame=False
+Writing screen/video events...:  60%|██████████████████████████████████████████████████████████████████████████████▌                                                    | 60/100 [00:15<00:18,  2.21event/s]2024-09-17 14:59:27.580 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:27.641 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.0814328 video_start_timestamp=1726581540.670897 time_diff=6.41053581237793 pts=153 force_key_frame=False
+Writing screen/video events...:  61%|███████████████████████████████████████████████████████████████████████████████▉                                                   | 61/100 [00:16<00:15,  2.54event/s]2024-09-17 14:59:27.834 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:27.833 | INFO     | openadapt.record:record_audio:1129 - The narrated text is:  Oh, hey. Come on. Hey.
+2024-09-17 14:59:27.834 | INFO     | openadapt.record:record_audio:1139 - Size of uncompressed audio data: 327660 bytes
+2024-09-17 14:59:27.837 | INFO     | openadapt.record:record_audio:1151 - Size of compressed audio data: 90897 bytes
+2024-09-17 14:59:27.888 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.153041 video_start_timestamp=1726581540.670897 time_diff=6.482143878936768 pts=155 force_key_frame=False
+Writing screen/video events...:  62%|█████████████████████████████████████████████████████████████████████████████████▏                                                 | 62/100 [00:16<00:15,  2.48event/s]2024-09-17 14:59:28.259 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:28.331 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.2327971 video_start_timestamp=1726581540.670897 time_diff=6.5619001388549805 pts=157 force_key_frame=False
+Writing screen/video events...:  63%|██████████████████████████████████████████████████████████████████████████████████▌                                                | 63/100 [00:17<00:15,  2.43event/s]2024-09-17 14:59:28.688 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:28.760 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.3068888 video_start_timestamp=1726581540.670897 time_diff=6.635991811752319 pts=159 force_key_frame=False
+Writing screen/video events...:  64%|███████████████████████████████████████████████████████████████████████████████████▊                                               | 64/100 [00:17<00:14,  2.42event/s]2024-09-17 14:59:29.106 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:29.157 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.3695662 video_start_timestamp=1726581540.670897 time_diff=6.698669195175171 pts=160 force_key_frame=False
+Writing screen/video events...:  65%|█████████████████████████████████████████████████████████████████████████████████████▏                                             | 65/100 [00:17<00:13,  2.58event/s]2024-09-17 14:59:29.432 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:29.478 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.451474 video_start_timestamp=1726581540.670897 time_diff=6.780576944351196 pts=162 force_key_frame=False
+Writing screen/video events...:  66%|██████████████████████████████████████████████████████████████████████████████████████▍                                            | 66/100 [00:17<00:11,  2.90event/s]2024-09-17 14:59:29.679 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:29.730 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.5198426 video_start_timestamp=1726581540.670897 time_diff=6.848945617675781 pts=164 force_key_frame=False
+Writing screen/video events...:  67%|███████████████████████████████████████████████████████████████████████████████████████▊                                           | 67/100 [00:18<00:11,  2.93event/s]2024-09-17 14:59:30.012 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:30.061 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.5907898 video_start_timestamp=1726581540.670897 time_diff=6.91989278793335 pts=166 force_key_frame=False
+Writing screen/video events...:  68%|█████████████████████████████████████████████████████████████████████████████████████████                                          | 68/100 [00:18<00:10,  2.96event/s]2024-09-17 14:59:30.343 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:30.393 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.6512947 video_start_timestamp=1726581540.670897 time_diff=6.980397701263428 pts=167 force_key_frame=False
+Writing screen/video events...:  69%|██████████████████████████████████████████████████████████████████████████████████████████▍                                        | 69/100 [00:18<00:10,  3.04event/s]2024-09-17 14:59:30.648 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:30.704 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.743294 video_start_timestamp=1726581540.670897 time_diff=7.072396993637085 pts=169 force_key_frame=False
+Writing screen/video events...:  70%|███████████████████████████████████████████████████████████████████████████████████████████▋                                       | 70/100 [00:19<00:09,  3.29event/s]2024-09-17 14:59:30.895 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:30.945 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581547.939359 video_start_timestamp=1726581540.670897 time_diff=7.2684619426727295 pts=174 force_key_frame=False
+Writing screen/video events...:  71%|█████████████████████████████████████████████████████████████████████████████████████████████                                      | 71/100 [00:19<00:07,  3.69event/s]2024-09-17 14:59:31.088 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:31.138 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.006538 video_start_timestamp=1726581540.670897 time_diff=7.335640907287598 pts=176 force_key_frame=False
+Writing screen/video events...:  72%|██████████████████████████████████████████████████████████████████████████████████████████████▎                                    | 72/100 [00:19<00:06,  4.10event/s]2024-09-17 14:59:31.269 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:31.321 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.0744789 video_start_timestamp=1726581540.670897 time_diff=7.403581857681274 pts=177 force_key_frame=False
+Writing screen/video events...:  73%|███████████████████████████████████████████████████████████████████████████████████████████████▋                                   | 73/100 [00:19<00:06,  4.48event/s]2024-09-17 14:59:31.445 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:31.497 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.1474473 video_start_timestamp=1726581540.670897 time_diff=7.476550340652466 pts=179 force_key_frame=False
+Writing screen/video events...:  74%|████████████████████████████████████████████████████████████████████████████████████████████████▉                                  | 74/100 [00:19<00:05,  4.78event/s]2024-09-17 14:59:31.620 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:31.675 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.245344 video_start_timestamp=1726581540.670897 time_diff=7.5744469165802 pts=181 force_key_frame=False
+Writing screen/video events...:  75%|██████████████████████████████████████████████████████████████████████████████████████████████████▎                                | 75/100 [00:20<00:05,  4.57event/s]2024-09-17 14:59:31.861 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:31.931 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.3518515 video_start_timestamp=1726581540.670897 time_diff=7.680954456329346 pts=184 force_key_frame=False
+Writing screen/video events...:  76%|███████████████████████████████████████████████████████████████████████████████████████████████████▌                               | 76/100 [00:20<00:05,  4.26event/s]2024-09-17 14:59:32.134 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:32.187 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.4042768 video_start_timestamp=1726581540.670897 time_diff=7.73337984085083 pts=185 force_key_frame=False
+Writing screen/video events...:  77%|████████████████████████████████████████████████████████████████████████████████████████████████████▊                              | 77/100 [00:20<00:05,  4.23event/s]2024-09-17 14:59:32.373 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:32.431 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.4532816 video_start_timestamp=1726581540.670897 time_diff=7.782384634017944 pts=186 force_key_frame=False
+Writing screen/video events...:  78%|██████████████████████████████████████████████████████████████████████████████████████████████████████▏                            | 78/100 [00:20<00:05,  4.23event/s]2024-09-17 14:59:32.611 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:32.662 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.5366616 video_start_timestamp=1726581540.670897 time_diff=7.865764617919922 pts=188 force_key_frame=False
+Writing screen/video events...:  79%|███████████████████████████████████████████████████████████████████████████████████████████████████████▍                           | 79/100 [00:21<00:04,  4.46event/s]2024-09-17 14:59:32.807 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:32.865 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.6087768 video_start_timestamp=1726581540.670897 time_diff=7.937879800796509 pts=190 force_key_frame=False
+Writing screen/video events...:  80%|████████████████████████████████████████████████████████████████████████████████████████████████████████▊                          | 80/100 [00:21<00:04,  4.20event/s]2024-09-17 14:59:33.076 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:33.124 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.6977897 video_start_timestamp=1726581540.670897 time_diff=8.02689266204834 pts=192 force_key_frame=False
+Writing screen/video events...:  81%|██████████████████████████████████████████████████████████████████████████████████████████████████████████                         | 81/100 [00:21<00:04,  3.92event/s]2024-09-17 14:59:33.370 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:33.469 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581548.7825317 video_start_timestamp=1726581540.670897 time_diff=8.111634731292725 pts=194 force_key_frame=False
+Writing screen/video events...:  82%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▍                       | 82/100 [00:22<00:05,  3.18event/s]2024-09-17 14:59:33.825 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:33.876 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.1609986 video_start_timestamp=1726581540.670897 time_diff=8.49010157585144 pts=203 force_key_frame=False
+Writing screen/video events...:  83%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                      | 83/100 [00:22<00:04,  3.65event/s]2024-09-17 14:59:34.004 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:34.055 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.2124984 video_start_timestamp=1726581540.670897 time_diff=8.541601419448853 pts=204 force_key_frame=False
+Writing screen/video events...:  84%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 84/100 [00:22<00:04,  3.90event/s]2024-09-17 14:59:34.219 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:34.275 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.289917 video_start_timestamp=1726581540.670897 time_diff=8.619019985198975 pts=206 force_key_frame=False
+Writing screen/video events...:  85%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                   | 85/100 [00:22<00:03,  4.26event/s]2024-09-17 14:59:34.404 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:34.456 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.3711636 video_start_timestamp=1726581540.670897 time_diff=8.700266599655151 pts=208 force_key_frame=False
+Writing screen/video events...:  86%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                  | 86/100 [00:22<00:03,  4.52event/s]2024-09-17 14:59:34.593 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:34.652 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.4817684 video_start_timestamp=1726581540.670897 time_diff=8.810871362686157 pts=211 force_key_frame=False
+Writing screen/video events...:  87%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                 | 87/100 [00:23<00:03,  4.18event/s]2024-09-17 14:59:34.874 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:34.933 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.5920873 video_start_timestamp=1726581540.670897 time_diff=8.92119026184082 pts=214 force_key_frame=False
+Writing screen/video events...:  88%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎               | 88/100 [00:23<00:02,  4.09event/s]2024-09-17 14:59:35.132 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:35.186 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581549.68465 video_start_timestamp=1726581540.670897 time_diff=9.013752937316895 pts=216 force_key_frame=False
+Writing screen/video events...:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌              | 89/100 [00:23<00:02,  4.05event/s]2024-09-17 14:59:35.383 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:35.444 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.0317051 video_start_timestamp=1726581540.670897 time_diff=9.36080813407898 pts=224 force_key_frame=False
+Writing screen/video events...:  90%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉             | 90/100 [00:23<00:02,  4.23event/s]2024-09-17 14:59:35.595 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:35.642 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.0937734 video_start_timestamp=1726581540.670897 time_diff=9.422876358032227 pts=226 force_key_frame=False
+Writing screen/video events...:  91%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏           | 91/100 [00:24<00:02,  4.08event/s]2024-09-17 14:59:35.860 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:35.914 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.1952386 video_start_timestamp=1726581540.670897 time_diff=9.524341583251953 pts=228 force_key_frame=False
+Writing screen/video events...:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌          | 92/100 [00:24<00:01,  4.30event/s]2024-09-17 14:59:36.063 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:36.114 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.27235 video_start_timestamp=1726581540.670897 time_diff=9.601453065872192 pts=230 force_key_frame=False
+Writing screen/video events...:  93%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊         | 93/100 [00:24<00:01,  4.58event/s]2024-09-17 14:59:36.249 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:36.302 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.3879802 video_start_timestamp=1726581540.670897 time_diff=9.717083215713501 pts=233 force_key_frame=False
+Writing screen/video events...:  94%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏       | 94/100 [00:24<00:01,  4.92event/s]2024-09-17 14:59:36.417 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:36.468 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.4866893 video_start_timestamp=1726581540.670897 time_diff=9.815792322158813 pts=235 force_key_frame=False
+Writing screen/video events...:  95%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍      | 95/100 [00:24<00:00,  5.18event/s]2024-09-17 14:59:36.586 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:36.637 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.6542606 video_start_timestamp=1726581540.670897 time_diff=9.983363628387451 pts=239 force_key_frame=False
+Writing screen/video events...:  96%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊     | 96/100 [00:25<00:00,  5.20event/s]2024-09-17 14:59:36.777 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:36.825 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.810785 video_start_timestamp=1726581540.670897 time_diff=10.139888048171997 pts=243 force_key_frame=False
+Writing screen/video events...:  97%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████    | 97/100 [00:25<00:00,  4.95event/s]2024-09-17 14:59:37.001 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:37.055 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.8878717 video_start_timestamp=1726581540.670897 time_diff=10.21697473526001 pts=245 force_key_frame=False
+Writing screen/video events...:  98%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍  | 98/100 [00:25<00:00,  4.98event/s]2024-09-17 14:59:37.199 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:37.246 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581550.99489 video_start_timestamp=1726581540.670897 time_diff=10.32399296760559 pts=247 force_key_frame=False
+Writing screen/video events...:  99%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋ | 99/100 [00:25<00:00,  4.79event/s]2024-09-17 14:59:37.426 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:37.477 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581551.5070696 video_start_timestamp=1726581540.670897 time_diff=10.836172580718994 pts=260 force_key_frame=False
+Writing screen/video events...: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:25<00:00,  4.57event/s]2024-09-17 14:59:37.668 | DEBUG    | openadapt.record:write_events:441 - event_type='screen/video' written
+2024-09-17 14:59:37.684 | DEBUG    | openadapt.video:write_video_frame:139 - timestamp=1726581551.5070696 video_start_timestamp=1726581540.670897 time_diff=10.836172580718994 pts=260 force_key_frame=True
+2024-09-17 14:59:37.684 | DEBUG    | openadapt.video:write_video_frame:146 - incremented pts=261
+2024-09-17 14:59:37.831 | INFO     | openadapt.video:finalize_video_writer:209 - flushing video stream...
+2024-09-17 14:59:37.882 | INFO     | openadapt.video:close_container:202 - closing video container...
+2024-09-17 14:59:37.915 | INFO     | openadapt.video:finalize_video_writer:225 - done
+Writing screen/video events...: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:26<00:00,  3.81event/s]
+2024-09-17 14:59:37.916 | INFO     | openadapt.record:write_events:449 - event_type='screen/video' done
+2024-09-17 14:59:37.917 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: write_events(None)
+2024-09-17 14:59:38.481 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='audio_recorder'...
+2024-09-17 14:59:38.482 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='perf_stats_writer'...
+2024-09-17 14:59:38.483 | INFO     | openadapt.record:performance_stats_writer:833 - Performance stats writer done
+2024-09-17 14:59:38.483 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: performance_stats_writer(None)
+2024-09-17 14:59:38.488 | INFO     | openadapt.record:memory_writer:890 - Memory writer done
+2024-09-17 14:59:39.298 | INFO     | openadapt.record:join_tasks:1557 - joining task_name='mem_writer'...
+2024-09-17 14:59:39.495 | INFO     | openadapt.plotting:plot_performance:430 - fpath='/Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt/openadapt/data/performance/performance-1726581540.470996.png'
+2024-09-17 14:59:39.688 | INFO     | openadapt.record:record:1589 - Saved recording_timestamp=1726581540.470996
+2024-09-17 14:59:39.725 | INFO     | test_recording:test_record_functionality:78 - Recording stopped successfully
+2024-09-17 14:59:39.725 | INFO     | openadapt.db.crud:release_db_lock:965 - Database lock released.
+2024-09-17 14:59:39.726 | INFO     | openadapt.utils:wrapper_logging:722 -  <- Leave: record(None)
+2024-09-17 14:59:39.761 | INFO     | test_recording:test_record_functionality:85 - Database assertions passed
+2024-09-17 14:59:39.761 | INFO     | test_recording:test_record_functionality:91 - Video file found at /Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt/openadapt/data/videos/oa_recording-1726581540.470996.mp4
+2024-09-17 14:59:39.761 | INFO     | test_recording:test_record_functionality:97 - Performance plot found at /Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt/openadapt/data/performance/performance-1726581540.470996.png
+2024-09-17 14:59:39.799 | INFO     | test_recording:test_record_functionality:103 - Number of action events recorded: 502
+2024-09-17 14:59:39.799 | INFO     | test_recording:test_record_functionality:105 - All assertions passed
+2024-09-17 14:59:39.799 | INFO     | test_recording:test_record_functionality:114 - Terminating recording process
+2024-09-17 14:59:39.811 | INFO     | test_recording:test_record_functionality:117 - Test completed
+PASSED
+
+============================================================================================= warnings summary =============================================================================================
+.venv/lib/python3.10/site-packages/pydantic/_internal/_config.py:284
+  /Users/onyedikachi/Documents/codes/algora-bounties/OpenAdapt/.venv/lib/python3.10/site-packages/pydantic/_internal/_config.py:284: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.7/migration/
+    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================================================================================== 1 passed, 1 warning in 42.73s =======================================================================================
