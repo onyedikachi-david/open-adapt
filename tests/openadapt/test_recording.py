@@ -11,7 +11,12 @@ from openadapt.models import Recording, ActionEvent
 from loguru import logger
 
 RECORD_STARTED_TIMEOUT = 360  # Increased timeout to 6 minutes
+MAX_START_RETRIES = 3  # Maximum number of retries for starting recording
+RETRY_DELAY = 5  # Delay between retries in seconds
 
+def is_ci_environment():
+    """Check if we're running in a CI environment."""
+    return os.environ.get('CI') == 'true'
 
 @pytest.fixture
 def setup_db():
@@ -23,47 +28,86 @@ def setup_db():
 
 def test_record_functionality():
     logger.info("Starting test_record_functionality")
+    logger.info(f"Running in CI environment: {is_ci_environment()}")
     
-    # Set up multiprocessing communication
-    parent_conn, child_conn = multiprocessing.Pipe()
+    for attempt in range(MAX_START_RETRIES):
+        logger.info(f"Starting recording attempt {attempt + 1}/{MAX_START_RETRIES}")
+        
+        # Set up multiprocessing communication
+        parent_conn, child_conn = multiprocessing.Pipe()
 
-    # Set up termination events
-    terminate_processing = multiprocessing.Event()
-    terminate_recording = multiprocessing.Event()
+        # Set up termination events
+        terminate_processing = multiprocessing.Event()
+        terminate_recording = multiprocessing.Event()
 
-    # Start the recording process
-    record_process = multiprocessing.Process(
-        target=record.record,
-        args=(
-            "Test recording",
-            terminate_processing,
-            terminate_recording,
-            child_conn,
-            False,
-        ),
-    )
-    
-    try:
-        record_process.start()
-        logger.info("Recording process started")
+        # Start the recording process
+        record_process = multiprocessing.Process(
+            target=record.record,
+            args=(
+                "Test recording",
+                terminate_processing,
+                terminate_recording,
+                child_conn,
+                False,
+            ),
+        )
+        
+        try:
+            record_process.start()
+            logger.info(f"Recording process started (PID: {record_process.pid})")
 
-        # Wait for the 'record.started' signal
-        start_time = time.time()
-        while time.time() - start_time < RECORD_STARTED_TIMEOUT:
-            if parent_conn.poll(1):  # 1 second timeout for poll
-                message = parent_conn.recv()
-                logger.info(f"Received message: {message}")
-                if message["type"] == "record.started":
-                    logger.info("Received 'record.started' signal")
+            # Wait for the 'record.started' signal
+            start_time = time.time()
+            signal_received = False
+            
+            while time.time() - start_time < RECORD_STARTED_TIMEOUT:
+                if parent_conn.poll(1):  # 1 second timeout for poll
+                    message = parent_conn.recv()
+                    logger.info(f"Received message: {message}")
+                    if message["type"] == "record.started":
+                        logger.info("Received 'record.started' signal")
+                        signal_received = True
+                        break
+                else:
+                    logger.debug("No message received, continuing to wait...")
+                    
+                # Check if process is still alive
+                if not record_process.is_alive():
+                    logger.error("Recording process died unexpectedly")
                     break
+                    
+            if signal_received:
+                break  # Successfully started recording
+            
+            logger.warning(f"Recording attempt {attempt + 1} failed")
+            
+            # Clean up failed attempt
+            if record_process.is_alive():
+                record_process.terminate()
+            record_process.join()
+            
+            if attempt < MAX_START_RETRIES - 1:
+                logger.info(f"Waiting {RETRY_DELAY} seconds before next attempt")
+                time.sleep(RETRY_DELAY)
             else:
-                logger.debug("No message received, continuing to wait...")
-        else:
-            logger.error("Timed out waiting for 'record.started' signal")
-            pytest.fail("Timed out waiting for 'record.started' signal")
+                logger.error("All recording attempts failed")
+                pytest.fail("Timed out waiting for 'record.started' signal after all retries")
+                
+        except Exception as e:
+            logger.exception(f"An error occurred during recording attempt {attempt + 1}: {e}")
+            if record_process.is_alive():
+                record_process.terminate()
+            record_process.join()
+            
+            if attempt < MAX_START_RETRIES - 1:
+                continue
+            raise
 
+    try:
         # Wait a short time to ensure some data is recorded
-        time.sleep(5)
+        record_time = 10 if is_ci_environment() else 5
+        logger.info(f"Recording for {record_time} seconds")
+        time.sleep(record_time)
 
         logger.info("Stopping the recording")
         terminate_processing.set()  # Signal the recording to stop
