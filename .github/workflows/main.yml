@@ -29,40 +29,40 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install and configure XQuartz
+      - name: Install and setup XQuartz
         run: |
           # Install XQuartz
           brew install --cask xquartz
+          
+          # Add X11 to path and set display
+          export PATH="/opt/X11/bin:$PATH"
           echo "/opt/X11/bin" >> $GITHUB_PATH
           echo "DISPLAY=:99" >> $GITHUB_ENV
+          
+          # Kill any existing X11 processes
+          pkill Xquartz || true
+          pkill Xvfb || true
+          sleep 2
           
           # Configure XQuartz
           defaults write org.x.X11 enable_test_extensions -boolean true
           defaults write org.x.X11 app_to_run /opt/X11/bin/xterm
           defaults write org.x.X11 no_auth -boolean true
           defaults write org.x.X11 nolisten_tcp -boolean false
-          
-          # Verify XQuartz installation
-          ls -la /opt/X11/bin/
-          which Xvfb
-          which xterm
 
-      - name: Setup virtual display and window
+      - name: Start X server
         run: |
-          # Start Xvfb with specific settings
+          # Start Xvfb
           /opt/X11/bin/Xvfb :99 -ac -screen 0 1024x768x24 &
-          echo "Waiting for Xvfb to start..."
           sleep 5
-
-          # Start window manager
-          /opt/X11/bin/xterm -display :99 -geometry 80x24+0+0 -name "CI Window" &
-          echo "Waiting for xterm to start..."
+          
+          # Start xterm
+          DISPLAY=:99 /opt/X11/bin/xterm -geometry 80x24+0+0 -name "CI Window" &
           sleep 3
-
-          # Verify display is working
+          
+          # Verify processes
           ps aux | grep Xvfb
           ps aux | grep xterm
-          echo "Display setup complete"
         env:
           DISPLAY: :99
 
@@ -102,12 +102,11 @@ jobs:
 
       - name: Run tests
         run: |
-          # Verify display is still working
-          echo "Checking display setup..."
+          # Verify X server is running
           ps aux | grep Xvfb
           ps aux | grep xterm
           
-          # Run the test
+          # Run tests
           poetry run pytest -vvvv -s tests/openadapt/test_recording.py
 
       - name: Upload test artifacts
