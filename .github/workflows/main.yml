@@ -16,6 +16,7 @@ jobs:
       OPENADAPT_DB_PATH: /tmp/openadapt_test.db
       CI: true
       OPENADAPT_CI_MODE: "true"
+      DYLD_LIBRARY_PATH: /opt/X11/lib
 
     steps:
       - name: Checkout code
@@ -35,36 +36,38 @@ jobs:
           brew install --cask xquartz
           
           # Add X11 to path and set display
-          export PATH="/opt/X11/bin:$PATH"
           echo "/opt/X11/bin" >> $GITHUB_PATH
           echo "DISPLAY=:99" >> $GITHUB_ENV
-          
-          # Kill any existing X11 processes
-          pkill Xquartz || true
-          pkill Xvfb || true
-          sleep 2
           
           # Configure XQuartz
           defaults write org.x.X11 enable_test_extensions -boolean true
           defaults write org.x.X11 app_to_run /opt/X11/bin/xterm
           defaults write org.x.X11 no_auth -boolean true
           defaults write org.x.X11 nolisten_tcp -boolean false
-
-      - name: Start X server
-        run: |
-          # Start Xvfb
-          /opt/X11/bin/Xvfb :99 -ac -screen 0 1024x768x24 &
-          sleep 5
           
-          # Start xterm
-          DISPLAY=:99 /opt/X11/bin/xterm -geometry 80x24+0+0 -name "CI Window" &
+          # Create dummy display
+          mkdir -p /tmp/.X11-unix
+          sudo chmod 1777 /tmp/.X11-unix
+          sudo chown root /tmp/.X11-unix/
+
+      - name: Start X server and window
+        run: |
+          # Start Xvfb with specific settings
+          /opt/X11/bin/Xvfb :99 -screen 0 1024x768x24 &
           sleep 3
+          
+          # Start window manager
+          /opt/X11/bin/twm &
+          sleep 2
+          
+          # Start terminal window
+          DISPLAY=:99 /opt/X11/bin/xterm -geometry 80x24+0+0 -name "CI Window" &
+          sleep 2
           
           # Verify processes
           ps aux | grep Xvfb
+          ps aux | grep twm
           ps aux | grep xterm
-        env:
-          DISPLAY: :99
 
       - name: Install system dependencies
         run: |
@@ -103,11 +106,18 @@ jobs:
       - name: Run tests
         run: |
           # Verify X server is running
-          ps aux | grep Xvfb
-          ps aux | grep xterm
+          if ! ps aux | grep -v grep | grep Xvfb > /dev/null; then
+            echo "Error: Xvfb not running"
+            exit 1
+          fi
           
-          # Run tests
-          poetry run pytest -vvvv -s tests/openadapt/test_recording.py
+          if ! ps aux | grep -v grep | grep "CI Window" > /dev/null; then
+            echo "Error: xterm not running"
+            exit 1
+          fi
+          
+          # Run tests with X11 environment
+          DISPLAY=:99 poetry run pytest -vvvv -s tests/openadapt/test_recording.py
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
