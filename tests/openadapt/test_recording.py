@@ -6,6 +6,7 @@ import os
 import signal
 import pytest
 import psutil
+from unittest.mock import patch
 from openadapt import record, playback, utils, video
 from openadapt.config import config
 from openadapt.db import crud
@@ -16,9 +17,24 @@ RECORD_STARTED_TIMEOUT = 360  # Increased timeout to 6 minutes
 MAX_START_RETRIES = 3  # Maximum number of retries for starting recording
 RETRY_DELAY = 5  # Delay between retries in seconds
 
+# Mock window state for CI environment
+MOCK_WINDOW_STATE = {
+    'app': 'Terminal',
+    'title': 'CI Test Window',
+    'x': 0,
+    'y': 0,
+    'width': 800,
+    'height': 600,
+    'pid': os.getpid()  # Use current process PID
+}
+
 def is_ci_environment():
     """Check if we're running in a CI environment."""
     return os.environ.get('CI') == 'true'
+
+def mock_get_active_window_state():
+    """Mock window state for CI environment."""
+    return MOCK_WINDOW_STATE
 
 def is_process_running(pid):
     """Safely check if a process is running."""
@@ -33,20 +49,46 @@ def is_process_running(pid):
 
 def terminate_process_safe(process):
     """Safely terminate a process and ensure it's cleaned up."""
-    if not process.is_alive():
+    if not process or not process.is_alive():
         return
     
     try:
+        pid = process.pid
         process.terminate()
         process.join(timeout=2)  # Give it 2 seconds to terminate gracefully
         
         # If still alive, force kill
         if process.is_alive():
-            logger.warning(f"Process {process.pid} didn't terminate gracefully, force killing...")
-            os.kill(process.pid, signal.SIGKILL)
+            logger.warning(f"Process {pid} didn't terminate gracefully, force killing...")
+            try:
+                os.kill(pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass  # Process already gone
             process.join(timeout=1)
+            
+        # Final check for zombie process
+        try:
+            os.kill(pid, 0)
+            logger.warning(f"Process {pid} might be a zombie, attempting cleanup")
+            try:
+                os.waitpid(pid, os.WNOHANG)
+            except ChildProcessError:
+                pass
+        except OSError:
+            pass  # Process is gone
     except Exception as e:
         logger.warning(f"Error while terminating process: {e}")
+
+@pytest.fixture(autouse=True)
+def setup_ci_mocks():
+    """Setup mocks for CI environment."""
+    if is_ci_environment():
+        # Patch the window state function for CI
+        with patch('openadapt.window.get_active_window_state', 
+                  side_effect=mock_get_active_window_state):
+            yield
+    else:
+        yield
 
 @pytest.fixture
 def setup_db():
@@ -61,10 +103,18 @@ def test_record_functionality():
     logger.info(f"Running in CI environment: {is_ci_environment()}")
     
     record_process = None
+    parent_conn = None
+    child_conn = None
     
     for attempt in range(MAX_START_RETRIES):
         logger.info(f"Starting recording attempt {attempt + 1}/{MAX_START_RETRIES}")
         
+        # Clean up any existing connections
+        if parent_conn:
+            parent_conn.close()
+        if child_conn:
+            child_conn.close()
+            
         # Set up multiprocessing communication
         parent_conn, child_conn = multiprocessing.Pipe()
 
@@ -95,11 +145,15 @@ def test_record_functionality():
             
             while time.time() - start_time < RECORD_STARTED_TIMEOUT:
                 if parent_conn.poll(1):  # 1 second timeout for poll
-                    message = parent_conn.recv()
-                    logger.info(f"Received message: {message}")
-                    if message["type"] == "record.started":
-                        logger.info("Received 'record.started' signal")
-                        signal_received = True
+                    try:
+                        message = parent_conn.recv()
+                        logger.info(f"Received message: {message}")
+                        if message["type"] == "record.started":
+                            logger.info("Received 'record.started' signal")
+                            signal_received = True
+                            break
+                    except EOFError:
+                        logger.error("Connection closed unexpectedly")
                         break
                 else:
                     logger.debug("No message received, continuing to wait...")
@@ -126,8 +180,7 @@ def test_record_functionality():
 
         except Exception as e:
             logger.exception(f"An error occurred during recording attempt {attempt + 1}: {e}")
-            if record_process:
-                terminate_process_safe(record_process)
+            terminate_process_safe(record_process)
             
             if attempt < MAX_START_RETRIES - 1:
                 continue
@@ -187,10 +240,14 @@ def test_record_functionality():
         raise
 
     finally:
-        # Clean up the recording process
+        # Clean up resources
         if record_process:
             logger.info("Cleaning up recording process")
             terminate_process_safe(record_process)
+        if parent_conn:
+            parent_conn.close()
+        if child_conn:
+            child_conn.close()
         logger.info("Test completed")
 
 
