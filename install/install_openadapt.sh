@@ -13,18 +13,18 @@ nvmInstallerLoc="https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
 
 # Set default values when no parameters are provided
 BRANCH=${BRANCH:-main}
-REPO=${REPO:-OpenAdaptAI/OpenAdapt.git}
+REPO=${REPO:-OpenAdaptAI/open-adapt.git}
 
 REPO_URL="https://github.com/$REPO"
 
 ################################ HELPER FUNCTIONS ################################
 
-# Remove OpenAdapt if it exists
+# Remove open-adapt if it exists
 Cleanup() {
-    if [ -d "../OpenAdapt" ]; then
+    if [ -d "../open-adapt" ]; then
         cd ..
-        rm -rf OpenAdapt
-        echo "Deleted OpenAdapt directory"
+        rm -rf open-adapt
+        echo "Deleted open-adapt directory"
     fi
 }
 
@@ -150,9 +150,9 @@ fi
 CheckPythonExists
 CheckNVMExists
 
-[ -d "OpenAdapt" ] && mv OpenAdapt OpenAdapt-$(date +%Y-%m-%d_%H-%M-%S)
+[ -d "open-adapt" ] && mv open-adapt open-adapt-$(date +%Y-%m-%d_%H-%M-%S)
 RunAndCheck "git clone $REPO_URL" "Clone git repo"
-cd OpenAdapt
+cd open-adapt
 RunAndCheck "git checkout $BRANCH" "Checkout branch $BRANCH"
 
 RunAndCheck "pip3.10 install poetry" "Install Poetry"
@@ -165,4 +165,4 @@ RunAndCheck "poetry run pytest" "Run tests"
 if [ -z "$SKIP_POETRY_SHELL" ]; then
     RunAndCheck "poetry shell" "Activate virtual environment"
 fi
-echo OpenAdapt installed successfully!
+echo open-adapt installed successfully!

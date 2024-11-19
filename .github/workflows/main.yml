@@ -14,6 +14,9 @@ jobs:
       DISPLAY: :99
       PYTEST_ADDOPTS: "--capture=no --verbose"
       OPENADAPT_DB_PATH: /tmp/openadapt_test.db
+      CI: true
+      OPENADAPT_CI_MODE: "true"
+      DYLD_LIBRARY_PATH: /opt/X11/lib
 
     steps:
       - name: Checkout code
@@ -26,6 +29,53 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.10"
+
+      - name: Install and setup XQuartz
+        run: |
+          # Install XQuartz
+          brew install --cask xquartz
+          
+          # Add X11 to path and set display
+          echo "/opt/X11/bin" >> $GITHUB_PATH
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+          
+          # Configure XQuartz
+          defaults write org.x.X11 enable_test_extensions -boolean true
+          defaults write org.x.X11 app_to_run /opt/X11/bin/xterm
+          defaults write org.x.X11 no_auth -boolean true
+          defaults write org.x.X11 nolisten_tcp -boolean false
+          
+          # Create dummy display
+          mkdir -p /tmp/.X11-unix
+          sudo chmod 1777 /tmp/.X11-unix
+          sudo chown root /tmp/.X11-unix/
+
+      - name: Start X server and window
+        run: |
+          # Start Xvfb with specific settings
+          /opt/X11/bin/Xvfb :99 -screen 0 1024x768x24 &
+          sleep 3
+          
+          # Start window manager
+          /opt/X11/bin/twm &
+          sleep 2
+          
+          # Start terminal window
+          DISPLAY=:99 /opt/X11/bin/xterm -geometry 80x24+0+0 -name "CI Window" &
+          sleep 2
+          
+          # Verify processes
+          ps aux | grep Xvfb
+          ps aux | grep twm
+          ps aux | grep xterm
+
+      - name: Install system dependencies
+        run: |
+          brew install tesseract
+          brew install opencv
+
+      - name: Run tests using the shell script (macOS compatible)
+        run: sh install/install_openadapt.sh
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -42,19 +92,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      - name: Install dependencies
-        run: poetry install --no-interaction
-
-      - name: Setup virtual display
-        run: |
-          brew install xquartz
-          brew install --cask xquartz
-          sudo Xvfb :99 -ac -screen 0 1024x768x8 &
-          sleep 3  # give xvfb some time to start
+      - name: Install project dependencies
+        run: poetry install --no-interaction --no-root
 
       - name: Run migrations
-        run: |
-          poetry run alembic upgrade head
+        run: poetry run alembic upgrade head
 
       - name: Create necessary directories
         run: |
@@ -63,11 +105,22 @@ jobs:
 
       - name: Run tests
         run: |
-          poetry run pytest -vvvv -s tests/openadapt/test_recording.py
-          # pytest tests/test_record_functionality.py --capture=no --verbose
+          # Verify X server is running
+          if ! ps aux | grep -v grep | grep Xvfb > /dev/null; then
+            echo "Error: Xvfb not running"
+            exit 1
+          fi
+          
+          if ! ps aux | grep -v grep | grep "CI Window" > /dev/null; then
+            echo "Error: xterm not running"
+            exit 1
+          fi
+          
+          # Run tests with X11 environment
+          DISPLAY=:99 poetry run pytest -vvvv -s tests/openadapt/test_recording.py
 
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-artifacts
