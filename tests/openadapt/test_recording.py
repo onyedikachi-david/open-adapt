@@ -6,7 +6,7 @@ import os
 import signal
 import pytest
 import psutil
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from openadapt import record, playback, utils, video
 from openadapt.config import config
 from openadapt.db import crud
@@ -30,15 +30,35 @@ MOCK_WINDOW_META = {
     },
     'kCGWindowLayer': 0,
     'kCGWindowOwnerPID': os.getpid(),
+    'kCGWindowIsOnscreen': True,
+    'kCGWindowWorkspace': 1,
+    'kCGWindowStoreType': 1,
+    'kCGWindowAlpha': 1.0
 }
 
 def is_ci_environment():
     """Check if we're running in a CI environment."""
     return os.environ.get('CI') == 'true'
 
-def mock_window_list():
+def mock_window_list(*args, **kwargs):
     """Mock window list for CI environment."""
-    return [MOCK_WINDOW_META]
+    # Create a list-like object that matches Quartz's return type
+    window_list = [MOCK_WINDOW_META]
+    mock_list = MagicMock()
+    mock_list.__iter__.return_value = iter(window_list)
+    mock_list.__getitem__.side_effect = window_list.__getitem__
+    mock_list.__len__.return_value = len(window_list)
+    return mock_list
+
+def mock_ax_ui_element(*args, **kwargs):
+    """Mock AXUIElement for CI environment."""
+    mock_element = MagicMock()
+    mock_element.error.return_value = 0
+    return mock_element
+
+def mock_copy_attribute(*args, **kwargs):
+    """Mock AXUIElementCopyAttributeValue for CI environment."""
+    return (0, MagicMock())  # Return success code and mock window
 
 def is_process_running(pid):
     """Safely check if a process is running."""
@@ -87,8 +107,10 @@ def terminate_process_safe(process):
 def setup_ci_mocks():
     """Setup mocks for CI environment."""
     if is_ci_environment():
-        # Mock the Quartz window list function
-        with patch('Quartz.CGWindowListCopyWindowInfo', return_value=mock_window_list()):
+        # Mock all the necessary Quartz and ApplicationServices functions
+        with patch('Quartz.CGWindowListCopyWindowInfo', side_effect=mock_window_list), \
+             patch('ApplicationServices.AXUIElementCreateApplication', side_effect=mock_ax_ui_element), \
+             patch('ApplicationServices.AXUIElementCopyAttributeValue', side_effect=mock_copy_attribute):
             yield
     else:
         yield
