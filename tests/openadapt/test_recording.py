@@ -17,24 +17,28 @@ RECORD_STARTED_TIMEOUT = 360  # Increased timeout to 6 minutes
 MAX_START_RETRIES = 3  # Maximum number of retries for starting recording
 RETRY_DELAY = 5  # Delay between retries in seconds
 
-# Mock window state for CI environment
-MOCK_WINDOW_STATE = {
-    'app': 'Terminal',
-    'title': 'CI Test Window',
-    'x': 0,
-    'y': 0,
-    'width': 800,
-    'height': 600,
-    'pid': os.getpid()  # Use current process PID
+# Mock window meta for CI environment
+MOCK_WINDOW_META = {
+    'kCGWindowOwnerName': 'Terminal',
+    'kCGWindowName': 'CI Test Window',
+    'kCGWindowNumber': 1,
+    'kCGWindowBounds': {
+        'X': 0.0,
+        'Y': 0.0,
+        'Width': 800.0,
+        'Height': 600.0
+    },
+    'kCGWindowLayer': 0,
+    'kCGWindowOwnerPID': os.getpid(),
 }
 
 def is_ci_environment():
     """Check if we're running in a CI environment."""
     return os.environ.get('CI') == 'true'
 
-def mock_get_active_window_state():
-    """Mock window state for CI environment."""
-    return MOCK_WINDOW_STATE
+def mock_window_list():
+    """Mock window list for CI environment."""
+    return [MOCK_WINDOW_META]
 
 def is_process_running(pid):
     """Safely check if a process is running."""
@@ -83,9 +87,8 @@ def terminate_process_safe(process):
 def setup_ci_mocks():
     """Setup mocks for CI environment."""
     if is_ci_environment():
-        # Patch the window state function for CI
-        with patch('openadapt.window.get_active_window_state', 
-                  side_effect=mock_get_active_window_state):
+        # Mock the Quartz window list function
+        with patch('Quartz.CGWindowListCopyWindowInfo', return_value=mock_window_list()):
             yield
     else:
         yield

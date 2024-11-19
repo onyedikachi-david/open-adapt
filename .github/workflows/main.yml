@@ -15,6 +15,7 @@ jobs:
       PYTEST_ADDOPTS: "--capture=no --verbose"
       OPENADAPT_DB_PATH: /tmp/openadapt_test.db
       CI: true
+      OPENADAPT_CI_MODE: "true"
 
     steps:
       - name: Checkout code
@@ -28,21 +29,40 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install XQuartz
+      - name: Install and configure XQuartz
         run: |
+          # Install XQuartz
           brew install --cask xquartz
           echo "/opt/X11/bin" >> $GITHUB_PATH
           echo "DISPLAY=:99" >> $GITHUB_ENV
-
-      - name: Setup virtual display
-        run: |
-          brew install --cask xquartz
+          
+          # Configure XQuartz
           defaults write org.x.X11 enable_test_extensions -boolean true
           defaults write org.x.X11 app_to_run /opt/X11/bin/xterm
+          defaults write org.x.X11 no_auth -boolean true
+          defaults write org.x.X11 nolisten_tcp -boolean false
+          
+          # Verify XQuartz installation
+          ls -la /opt/X11/bin/
+          which Xvfb
+          which xterm
+
+      - name: Setup virtual display and window
+        run: |
+          # Start Xvfb with specific settings
           /opt/X11/bin/Xvfb :99 -ac -screen 0 1024x768x24 &
-          sleep 5  # give xvfb some time to start
-          /opt/X11/bin/xterm -display :99 &  # Start a window that can be detected
-          sleep 2  # give xterm time to start
+          echo "Waiting for Xvfb to start..."
+          sleep 5
+
+          # Start window manager
+          /opt/X11/bin/xterm -display :99 -geometry 80x24+0+0 -name "CI Window" &
+          echo "Waiting for xterm to start..."
+          sleep 3
+
+          # Verify display is working
+          ps aux | grep Xvfb
+          ps aux | grep xterm
+          echo "Display setup complete"
         env:
           DISPLAY: :99
 
@@ -50,7 +70,8 @@ jobs:
         run: |
           brew install tesseract
           brew install opencv
-      - name: Run tests using the shell script (macOS compatible).
+
+      - name: Run tests using the shell script (macOS compatible)
         run: sh install/install_openadapt.sh
 
       - name: Install Poetry
@@ -81,9 +102,13 @@ jobs:
 
       - name: Run tests
         run: |
+          # Verify display is still working
+          echo "Checking display setup..."
+          ps aux | grep Xvfb
+          ps aux | grep xterm
+          
+          # Run the test
           poetry run pytest -vvvv -s tests/openadapt/test_recording.py
-        env:
-          OPENADAPT_CI_MODE: "true"
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
