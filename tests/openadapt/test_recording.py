@@ -3,7 +3,9 @@
 import multiprocessing
 import time
 import os
+import signal
 import pytest
+import psutil
 from openadapt import record, playback, utils, video
 from openadapt.config import config
 from openadapt.db import crud
@@ -18,6 +20,34 @@ def is_ci_environment():
     """Check if we're running in a CI environment."""
     return os.environ.get('CI') == 'true'
 
+def is_process_running(pid):
+    """Safely check if a process is running."""
+    try:
+        # First try sending signal 0 - doesn't actually send a signal
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+    except Exception:
+        return False
+
+def terminate_process_safe(process):
+    """Safely terminate a process and ensure it's cleaned up."""
+    if not process.is_alive():
+        return
+    
+    try:
+        process.terminate()
+        process.join(timeout=2)  # Give it 2 seconds to terminate gracefully
+        
+        # If still alive, force kill
+        if process.is_alive():
+            logger.warning(f"Process {process.pid} didn't terminate gracefully, force killing...")
+            os.kill(process.pid, signal.SIGKILL)
+            process.join(timeout=1)
+    except Exception as e:
+        logger.warning(f"Error while terminating process: {e}")
+
 @pytest.fixture
 def setup_db():
     # Setup the database connection and return the session
@@ -29,6 +59,8 @@ def setup_db():
 def test_record_functionality():
     logger.info("Starting test_record_functionality")
     logger.info(f"Running in CI environment: {is_ci_environment()}")
+    
+    record_process = None
     
     for attempt in range(MAX_START_RETRIES):
         logger.info(f"Starting recording attempt {attempt + 1}/{MAX_START_RETRIES}")
@@ -54,7 +86,8 @@ def test_record_functionality():
         
         try:
             record_process.start()
-            logger.info(f"Recording process started (PID: {record_process.pid})")
+            pid = record_process.pid
+            logger.info(f"Recording process started (PID: {pid})")
 
             # Wait for the 'record.started' signal
             start_time = time.time()
@@ -71,9 +104,9 @@ def test_record_functionality():
                 else:
                     logger.debug("No message received, continuing to wait...")
                     
-                # Check if process is still alive
-                if not record_process.is_alive():
-                    logger.error("Recording process died unexpectedly")
+                # Check if process is still alive using our safe function
+                if not is_process_running(pid):
+                    logger.error(f"Recording process (PID: {pid}) died unexpectedly")
                     break
                     
             if signal_received:
@@ -82,9 +115,7 @@ def test_record_functionality():
             logger.warning(f"Recording attempt {attempt + 1} failed")
             
             # Clean up failed attempt
-            if record_process.is_alive():
-                record_process.terminate()
-            record_process.join()
+            terminate_process_safe(record_process)
             
             if attempt < MAX_START_RETRIES - 1:
                 logger.info(f"Waiting {RETRY_DELAY} seconds before next attempt")
@@ -92,12 +123,11 @@ def test_record_functionality():
             else:
                 logger.error("All recording attempts failed")
                 pytest.fail("Timed out waiting for 'record.started' signal after all retries")
-                
+
         except Exception as e:
             logger.exception(f"An error occurred during recording attempt {attempt + 1}: {e}")
-            if record_process.is_alive():
-                record_process.terminate()
-            record_process.join()
+            if record_process:
+                terminate_process_safe(record_process)
             
             if attempt < MAX_START_RETRIES - 1:
                 continue
@@ -112,11 +142,15 @@ def test_record_functionality():
         logger.info("Stopping the recording")
         terminate_processing.set()  # Signal the recording to stop
 
-        # Wait for the recording to stop
-        logger.info("Waiting for recording to stop")
-        terminate_recording.wait(timeout=RECORD_STARTED_TIMEOUT)
+        # Wait for the recording to stop with a shorter timeout in CI
+        stop_timeout = 30 if is_ci_environment() else RECORD_STARTED_TIMEOUT
+        logger.info(f"Waiting for recording to stop (timeout: {stop_timeout}s)")
+        terminate_recording.wait(timeout=stop_timeout)
+        
         if not terminate_recording.is_set():
             logger.error("Recording did not stop within the expected time")
+            # Force terminate if needed
+            terminate_process_safe(record_process)
             pytest.fail("Recording did not stop within the expected time")
 
         logger.info("Recording stopped successfully")
@@ -154,10 +188,9 @@ def test_record_functionality():
 
     finally:
         # Clean up the recording process
-        if record_process.is_alive():
-            logger.info("Terminating recording process")
-            record_process.terminate()
-        record_process.join()
+        if record_process:
+            logger.info("Cleaning up recording process")
+            terminate_process_safe(record_process)
         logger.info("Test completed")
 
 
